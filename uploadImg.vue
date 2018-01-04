@@ -3,7 +3,7 @@
         <input type="file" :id="name" @change="doUpload" v-if="multiple==false" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg">
         <input type="file" :id="name" @change="doUpload" :multiple="multiple" v-if="multiple==true" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg">
         <button type="button" class="ivu-btn ivu-btn-ghost"><Icon type="ios-cloud-upload-outline"></Icon><span>上传文件</span></button>
-        <span class="size">建议尺寸：{{size}}，图片大小不要超过100kb，否则上传失败</span>
+        <span class="size">建议尺寸：{{size}}，图片大小不超过2M</span>
         <div class="uploadView" v-if="uploadImg">
             <div v-for="(item,index) in uploadImg" :key="index">
                 <div>
@@ -47,13 +47,8 @@
         },
         methods: {
             setData(){
-              if(process.env.NODE_ENV=="development"){
-                this.region='oss-cn-shenzhen';
-                this.bucket='x-test';
-              }else{
-                this.region='oss-cn-zhangjiakou';
-                this.bucket='zwtt';
-              }
+                this.region='这里换成自己的region';
+                this.bucket='这里换成自己的bucket';
             },
             doUpload(){
                 let userId = localStorage.getItem('userId');
@@ -113,9 +108,6 @@
             handleRemove(index){
               this.uploadImg.splice(index,1);
             },
-            getSrcList(val){
-              this.uploadImg=val;
-            }
         }
     }
 </script>
